@@ -16,7 +16,7 @@
 <meta property="og:description" content="Go变量类型与 const, iota">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-19T04:55:46.000Z">
-<meta property="article:modified_time" content="2022-03-24T13:37:27.728Z">
+<meta property="article:modified_time" content="2022-03-25T06:03:33.129Z">
 <meta property="article:author" content="FOOLISH">
 <meta property="article:tag" content="const">
 <meta property="article:tag" content="iota">
@@ -175,6 +175,7 @@
 <h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p><code>fmt.Printf()</code>等</p>
 <ul>
 <li><code>%d</code>, <code>%f</code>, <code>%s</code></li>
+<li><code>%x</code> 输出地址</li>
 <li><code>%T</code> 输出类型</li>
 <li><code>%v</code> 输出数组，map，结构体等<h1 id="const-与-iota"><a href="#const-与-iota" class="headerlink" title="const 与 iota"></a>const 与 iota</h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//const 来定义枚举类型</span></span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">	<span class="comment">//可以在const() 添加一个关键字 iota， 每行的iota都会累加1, 第一行的iota的默认值是0</span></span><br><span class="line">	BEIJING = <span class="number">10</span>*<span class="literal">iota</span>	 <span class="comment">//iota = 0</span></span><br><span class="line">	SHANGHAI 		  <span class="comment">//iota = 1</span></span><br><span class="line">	SHENZHEN          <span class="comment">//iota = 2</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">	a, b = <span class="literal">iota</span>+<span class="number">1</span>, <span class="literal">iota</span>+<span class="number">2</span> <span class="comment">// iota = 0, a = iota + 1, b = iota + 2, a = 1, b = 2</span></span><br><span class="line">	c, d				  <span class="comment">// iota = 1, c = iota + 1, d = iota + 2, c = 2, d = 3</span></span><br><span class="line">	e, f				  <span class="comment">// iota = 2, e = iota + 1, f = iota + 2, e = 3, f = 4</span></span><br><span class="line"></span><br><span class="line">	g, h = <span class="literal">iota</span> * <span class="number">2</span>, <span class="literal">iota</span> *<span class="number">3</span>  <span class="comment">// iota = 3, g = iota * 2, h = iota * 3, g = 6, h = 9 </span></span><br><span class="line">	i, k					   <span class="comment">// iota = 4, i = iota * 2, k = iota * 3 , i = 8, k = 12</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">//常量(只读属性)</span></span><br><span class="line">	<span class="keyword">const</span> length <span class="keyword">int</span> = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">	fmt.Println(<span class="string">&quot;length = &quot;</span>, length)</span><br><span class="line"></span><br><span class="line">	<span class="comment">//length = 100 //常量是不允许修改的。</span></span><br><span class="line"></span><br><span class="line">	fmt.Println(<span class="string">&quot;BEIJIGN = &quot;</span>, BEIJING)</span><br><span class="line">	fmt.Println(<span class="string">&quot;SHANGHAI = &quot;</span>, SHANGHAI)</span><br><span class="line">	fmt.Println(<span class="string">&quot;SHENZHEN = &quot;</span>, SHENZHEN)</span><br><span class="line"></span><br><span class="line">	fmt.Println(<span class="string">&quot;a = &quot;</span>, a, <span class="string">&quot;b = &quot;</span>, b)</span><br><span class="line">	fmt.Println(<span class="string">&quot;c = &quot;</span>, c, <span class="string">&quot;d = &quot;</span>, d)</span><br><span class="line">	fmt.Println(<span class="string">&quot;e = &quot;</span>, e, <span class="string">&quot;f = &quot;</span>, f)</span><br><span class="line"></span><br><span class="line">	fmt.Println(<span class="string">&quot;g = &quot;</span>, g, <span class="string">&quot;h = &quot;</span>, h)</span><br><span class="line">	fmt.Println(<span class="string">&quot;i = &quot;</span>, i, <span class="string">&quot;k = &quot;</span>, k)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// iota 只能够配合const() 一起使用， iota只有在const进行累加效果。</span></span><br><span class="line">	<span class="comment">//var a int = iota </span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
@@ -383,6 +384,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">struct</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">interface</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">List</a>
               </li>
              
@@ -395,14 +404,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Go数组</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Go切片</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">static</a>
               </li>
              
@@ -412,6 +413,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">this</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Go数组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Go切片</a>
               </li>
              
               <li class="article-tag-list-item">
