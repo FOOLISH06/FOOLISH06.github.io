@@ -6,23 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>go数组与切片 | 愚者的小屋</title>
+  <title>Go数组、切片与map | 愚者的小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Go数组与切片">
+  <meta name="description" content="数组 切片 map">
 <meta property="og:type" content="article">
-<meta property="og:title" content="go数组与切片">
-<meta property="og:url" content="http://example.com/2022/03/20/go%E6%95%B0%E7%BB%84%E4%B8%8E%E5%88%87%E7%89%87/index.html">
+<meta property="og:title" content="Go数组、切片与map">
+<meta property="og:url" content="http://example.com/2022/03/20/Go%E6%95%B0%E7%BB%84%E4%B8%8E%E5%88%87%E7%89%87/index.html">
 <meta property="og:site_name" content="愚者的小屋">
-<meta property="og:description" content="Go数组与切片">
+<meta property="og:description" content="数组 切片 map">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/image.4kkasrceity0.webp">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/image.30sptqezi280.webp">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/image.6q3upfbokho0.webp">
 <meta property="article:published_time" content="2022-03-20T01:44:11.000Z">
-<meta property="article:modified_time" content="2022-03-24T12:32:04.689Z">
+<meta property="article:modified_time" content="2022-03-25T07:49:54.421Z">
 <meta property="article:author" content="FOOLISH">
 <meta property="article:tag" content="Go数组">
 <meta property="article:tag" content="Go切片">
+<meta property="article:tag" content="Go map">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/image.4kkasrceity0.webp">
   
@@ -148,19 +149,19 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-go数组与切片" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Go数组与切片" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      go数组与切片
+      Go数组、切片与map
     </h1>
   
 
         
-        <a href="/2022/03/20/go%E6%95%B0%E7%BB%84%E4%B8%8E%E5%88%87%E7%89%87/" class="archive-article-date">
+        <a href="/2022/03/20/Go%E6%95%B0%E7%BB%84%E4%B8%8E%E5%88%87%E7%89%87/" class="archive-article-date">
   	<time datetime="2022-03-20T01:44:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-20</time>
 </a>
         
@@ -168,11 +169,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Go数组与切片</p>
-<span id="more"></span>
+        <ul>
+<li>数组</li>
+<li>切片</li>
+<li>map<span id="more"></span>
 <h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h2 id="声明数组"><a href="#声明数组" class="headerlink" title="声明数组"></a>声明数组</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">//一维数组</span></span><br><span class="line">	<span class="keyword">var</span> arr_1 [<span class="number">5</span>] <span class="keyword">int</span></span><br><span class="line">	fmt.Println(arr_1)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> arr_2 =  [<span class="number">5</span>] <span class="keyword">int</span> &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;</span><br><span class="line">	fmt.Println(arr_2)</span><br><span class="line"></span><br><span class="line">	arr_3 := [<span class="number">5</span>] <span class="keyword">int</span> &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;</span><br><span class="line">	fmt.Println(arr_3)</span><br><span class="line"></span><br><span class="line">	arr_4 := [...] <span class="keyword">int</span> &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>&#125;</span><br><span class="line">	fmt.Println(arr_4)</span><br><span class="line"></span><br><span class="line">	arr_5 := [<span class="number">5</span>] <span class="keyword">int</span> &#123;<span class="number">0</span>:<span class="number">3</span>, <span class="number">1</span>:<span class="number">5</span>, <span class="number">4</span>:<span class="number">6</span>&#125;</span><br><span class="line">	fmt.Println(arr_5)</span><br><span class="line"></span><br><span class="line">	<span class="comment">//二维数组</span></span><br><span class="line">	<span class="keyword">var</span> arr_6 = [<span class="number">3</span>][<span class="number">5</span>] <span class="keyword">int</span> &#123;&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;, &#123;<span class="number">9</span>, <span class="number">8</span>, <span class="number">7</span>, <span class="number">6</span>, <span class="number">5</span>&#125;, &#123;<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>&#125;&#125;</span><br><span class="line">	fmt.Println(arr_6)</span><br><span class="line"></span><br><span class="line">	arr_7 :=  [<span class="number">3</span>][<span class="number">5</span>] <span class="keyword">int</span> &#123;&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;, &#123;<span class="number">9</span>, <span class="number">8</span>, <span class="number">7</span>, <span class="number">6</span>, <span class="number">5</span>&#125;, &#123;<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>&#125;&#125;</span><br><span class="line">	fmt.Println(arr_7)</span><br><span class="line"></span><br><span class="line">	arr_8 :=  [...][<span class="number">5</span>] <span class="keyword">int</span> &#123;&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;, &#123;<span class="number">9</span>, <span class="number">8</span>, <span class="number">7</span>, <span class="number">6</span>, <span class="number">5</span>&#125;, &#123;<span class="number">0</span>:<span class="number">3</span>, <span class="number">1</span>:<span class="number">5</span>, <span class="number">4</span>:<span class="number">6</span>&#125;&#125;</span><br><span class="line">	fmt.Println(arr_8)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行结果：<br><img src="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/image.4kkasrceity0.webp" alt="image"></p>
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+运行结果：<br><img src="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/image.4kkasrceity0.webp" alt="image"><h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2></li>
 <li>数组的长度固定，<code>len()</code> 和 <code>cap()</code> 的结果是一样的</li>
 <li>函数传参为<strong>值传递</strong>，传的是拷贝</li>
 </ul>
@@ -183,9 +185,11 @@
 <p>运行结果：<br><img src="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/image.6q3upfbokho0.webp" alt="image"></p>
 <h2 id="注意事项-1"><a href="#注意事项-1" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
 <li>每次扩容为之前容量的<strong>两倍</strong></li>
-<li>切片截取后的两个指针指向同一块区域，使用 <code>copy()</code> 进行深拷贝</li>
+<li>切片直接赋值 <code>ss := s</code> 与切片截取后，两个指针指向同一块区域，使用 <code>copy()</code> 进行深拷贝</li>
 </ul>
-
+<h1 id="map"><a href="#map" class="headerlink" title="map"></a>map</h1><p>map 也是引用传递</p>
+<h2 id="map声明："><a href="#map声明：" class="headerlink" title="map声明："></a>map声明：</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">//===&gt; 第一种声明方式</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//声明myMap1是一种map类型 key是string， value是string</span></span><br><span class="line">	<span class="keyword">var</span> myMap1 <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span></span><br><span class="line">	<span class="keyword">if</span> myMap1 == <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;myMap1 是一个空map&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//在使用map前， 需要先用make给map分配数据空间</span></span><br><span class="line">	myMap1 = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>, <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">	myMap1[<span class="string">&quot;one&quot;</span>] = <span class="string">&quot;java&quot;</span></span><br><span class="line">	myMap1[<span class="string">&quot;two&quot;</span>] = <span class="string">&quot;c++&quot;</span></span><br><span class="line">	myMap1[<span class="string">&quot;three&quot;</span>] = <span class="string">&quot;python&quot;</span></span><br><span class="line"></span><br><span class="line">	fmt.Println(myMap1)</span><br><span class="line"></span><br><span class="line">	<span class="comment">//===&gt; 第二种声明方式</span></span><br><span class="line">	myMap2 := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">string</span>)</span><br><span class="line">	myMap2[<span class="number">1</span>] = <span class="string">&quot;java&quot;</span></span><br><span class="line">	myMap2[<span class="number">2</span>] = <span class="string">&quot;c++&quot;</span></span><br><span class="line">	myMap2[<span class="number">3</span>] = <span class="string">&quot;python&quot;</span></span><br><span class="line"></span><br><span class="line">	fmt.Println(myMap2)</span><br><span class="line"></span><br><span class="line">	<span class="comment">//===&gt; 第三种声明方式</span></span><br><span class="line">	myMap3 := <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>&#123;</span><br><span class="line">		<span class="string">&quot;one&quot;</span>:   <span class="string">&quot;php&quot;</span>,</span><br><span class="line">		<span class="string">&quot;two&quot;</span>:   <span class="string">&quot;c++&quot;</span>,</span><br><span class="line">		<span class="string">&quot;three&quot;</span>: <span class="string">&quot;python&quot;</span>,</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(myMap3)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="map操作："><a href="#map操作：" class="headerlink" title="map操作："></a>map操作：</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printMap</span><span class="params">(cityMap <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">	<span class="comment">//cityMap 是一个引用传递</span></span><br><span class="line">	<span class="keyword">for</span> key, value := <span class="keyword">range</span> cityMap &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;key = &quot;</span>, key)</span><br><span class="line">		fmt.Println(<span class="string">&quot;value = &quot;</span>, value)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ChangeValue</span><span class="params">(cityMap <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">	cityMap[<span class="string">&quot;England&quot;</span>] = <span class="string">&quot;London&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	cityMap := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment">//添加</span></span><br><span class="line">	cityMap[<span class="string">&quot;China&quot;</span>] = <span class="string">&quot;Beijing&quot;</span></span><br><span class="line">	cityMap[<span class="string">&quot;Japan&quot;</span>] = <span class="string">&quot;Tokyo&quot;</span></span><br><span class="line">	cityMap[<span class="string">&quot;USA&quot;</span>] = <span class="string">&quot;NewYork&quot;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//遍历</span></span><br><span class="line">	printMap(cityMap)</span><br><span class="line"></span><br><span class="line">	<span class="comment">//删除</span></span><br><span class="line">	<span class="built_in">delete</span>(cityMap, <span class="string">&quot;China&quot;</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment">//修改</span></span><br><span class="line">	cityMap[<span class="string">&quot;USA&quot;</span>] = <span class="string">&quot;DC&quot;</span></span><br><span class="line">	ChangeValue(cityMap)</span><br><span class="line"></span><br><span class="line">	fmt.Println(<span class="string">&quot;-------&quot;</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment">//遍历</span></span><br><span class="line">	printMap(cityMap)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -203,6 +207,10 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Go切片</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Go map</a>
         		</li>
       		
 		</ul>
@@ -274,7 +282,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">1.</span> <span class="toc-text">数组</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E6%95%B0%E7%BB%84"><span class="toc-number">1.1.</span> <span class="toc-text">声明数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">1.2.</span> <span class="toc-text">注意事项</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Slice-%E5%88%87%E7%89%87"><span class="toc-number">2.</span> <span class="toc-text">Slice 切片</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%87%E7%89%87%E5%A3%B0%E6%98%8E%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%89%A9%E5%AE%B9"><span class="toc-number">2.1.</span> <span class="toc-text">切片声明与自动扩容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%87%E7%89%87%E6%88%AA%E5%8F%96%E4%B8%8E%E6%8B%B7%E8%B4%9D"><span class="toc-number">2.2.</span> <span class="toc-text">切片截取与拷贝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-1"><span class="toc-number">2.3.</span> <span class="toc-text">注意事项</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">1.</span> <span class="toc-text">数组</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E6%95%B0%E7%BB%84"><span class="toc-number">1.1.</span> <span class="toc-text">声明数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">1.2.</span> <span class="toc-text">注意事项</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Slice-%E5%88%87%E7%89%87"><span class="toc-number">2.</span> <span class="toc-text">Slice 切片</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%87%E7%89%87%E5%A3%B0%E6%98%8E%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%89%A9%E5%AE%B9"><span class="toc-number">2.1.</span> <span class="toc-text">切片声明与自动扩容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%87%E7%89%87%E6%88%AA%E5%8F%96%E4%B8%8E%E6%8B%B7%E8%B4%9D"><span class="toc-number">2.2.</span> <span class="toc-text">切片截取与拷贝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-1"><span class="toc-number">2.3.</span> <span class="toc-text">注意事项</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#map"><span class="toc-number">3.</span> <span class="toc-text">map</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#map%E5%A3%B0%E6%98%8E%EF%BC%9A"><span class="toc-number">3.1.</span> <span class="toc-text">map声明：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#map%E6%93%8D%E4%BD%9C%EF%BC%9A"><span class="toc-number">3.2.</span> <span class="toc-text">map操作：</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -459,6 +467,38 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">final</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">reflect</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Tag</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">json</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Go map</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">goroutine</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Go并发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">chan</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">select</a>
               </li>
             
             <div class="clearfix"></div>

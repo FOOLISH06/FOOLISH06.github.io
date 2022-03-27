@@ -16,7 +16,7 @@
 <meta property="og:description" content="Go 面向对象：  结构体 继承 接口">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-21T04:40:30.000Z">
-<meta property="article:modified_time" content="2022-03-25T06:23:44.259Z">
+<meta property="article:modified_time" content="2022-03-25T07:28:54.176Z">
 <meta property="article:author" content="FOOLISH">
 <meta property="article:tag" content="struct">
 <meta property="article:tag" content="interface">
@@ -172,7 +172,7 @@
 <h1 id="struct"><a href="#struct" class="headerlink" title="struct"></a>struct</h1><h2 id="结构体声明"><a href="#结构体声明" class="headerlink" title="结构体声明"></a>结构体声明</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> person <span class="keyword">struct</span> &#123;</span><br><span class="line">	name <span class="keyword">string</span></span><br><span class="line">	age <span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p *person)</span> <span class="title">setName</span><span class="params">(name <span class="keyword">string</span>)</span></span>  &#123;</span><br><span class="line">	p.name = name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p *person)</span> <span class="title">setAge</span><span class="params">(age <span class="keyword">int</span>)</span></span>  &#123;</span><br><span class="line">	p.age = age</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p person)</span> <span class="title">getName</span><span class="params">()</span> <span class="title">string</span></span>  &#123;</span><br><span class="line">	<span class="keyword">return</span> p.name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不用指针为值传递</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">foo</span><span class="params">(p person)</span></span>  &#123;</span><br><span class="line">	p.setAge(<span class="number">23</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	p := person&#123;<span class="string">&quot;wxy&quot;</span>, <span class="number">21</span>&#125;</span><br><span class="line">	fmt.Printf(<span class="string">&quot;%v\n&quot;</span>, p)</span><br><span class="line">	fmt.Println(p.getName())</span><br><span class="line">	foo(p)</span><br><span class="line">	fmt.Printf(<span class="string">&quot;%v\n&quot;</span>, p)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2></li>
 <li>首字母大写为公有，小写为私有（同一个包）。（<em>函数，变量，常量同理</em>）</li>
-<li>函数传参为值传递，是拷贝的副本，可以使用指针</li>
+<li>函数传参为值传递，是拷贝的副本，可以使用指针 (直接赋值也是副本)</li>
 <li>结构体方法使用 <code>(p Person)</code> 或 <code>(p *person)</code> 绑定 (set方法只用指针)</li>
 <li>结构体变量可以直接使用 <code>==</code> 和 <code>!=</code> 比较</li>
 </ul>
@@ -235,6 +235,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2022/03/21/Go%E5%8F%8D%E5%B0%84/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Go反射
+        
+      </div>
+    </a>
   
   
     <a href="/2022/03/20/go%E5%87%BD%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
@@ -450,6 +459,38 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">final</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">reflect</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Tag</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">json</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Go map</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">goroutine</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Go并发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">chan</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">select</a>
               </li>
             
             <div class="clearfix"></div>
