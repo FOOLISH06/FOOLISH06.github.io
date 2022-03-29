@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/image.30sptqezi280.webp">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/image.6q3upfbokho0.webp">
 <meta property="article:published_time" content="2022-03-20T01:44:11.000Z">
-<meta property="article:modified_time" content="2022-03-25T07:49:54.421Z">
+<meta property="article:modified_time" content="2022-03-29T00:56:14.049Z">
 <meta property="article:author" content="FOOLISH">
 <meta property="article:tag" content="Go数组">
 <meta property="article:tag" content="Go切片">
@@ -28,7 +28,7 @@
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/image.4kkasrceity0.webp">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/img/favicon.ico">
   
   <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
   <style type="text/css">
@@ -65,8 +65,6 @@
 				<li><a href="/">主页</a></li>
 	        
 				<li><a href="/categories">分类</a></li>
-	        
-				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 	        
 			</ul>
 		</nav>
@@ -114,8 +112,6 @@
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -127,14 +123,12 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 70%">
+				<ul style="width: 50%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
+					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/categories">分类</a></li>
-		        
-					<li style="width: 33.333333333333336%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 50%"><a href="/categories">分类</a></li>
 		        
 				</ul>
 			</nav>
@@ -180,9 +174,17 @@
 </ul>
 <h1 id="Slice-切片"><a href="#Slice-切片" class="headerlink" title="Slice 切片"></a>Slice 切片</h1><p>切片是动态数组，长度可变，可以进行追加 <code>append()</code> 和截取 <code>s[x:y]</code> 。<br><code>len()</code> 和 <code>cap()</code> 返回结果可能不同。</p>
 <h2 id="切片声明与自动扩容"><a href="#切片声明与自动扩容" class="headerlink" title="切片声明与自动扩容"></a>切片声明与自动扩容</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> numbers = <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">3</span>, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">	fmt.Printf(<span class="string">&quot;len = %d, cap = %d, slice = %v\n&quot;</span>, <span class="built_in">len</span>(numbers), <span class="built_in">cap</span>(numbers), numbers)</span><br><span class="line"></span><br><span class="line">	<span class="comment">//向numbers切片追加一个元素1, numbers len = 4， [0,0,0,1], cap = 5</span></span><br><span class="line">	numbers = <span class="built_in">append</span>(numbers, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">	fmt.Printf(<span class="string">&quot;len = %d, cap = %d, slice = %v\n&quot;</span>, <span class="built_in">len</span>(numbers), <span class="built_in">cap</span>(numbers), numbers)</span><br><span class="line"></span><br><span class="line">	<span class="comment">//向numbers切片追加一个元素2, numbers len = 5， [0,0,0,1,2], cap = 5</span></span><br><span class="line">	numbers = <span class="built_in">append</span>(numbers, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">	fmt.Printf(<span class="string">&quot;len = %d, cap = %d, slice = %v\n&quot;</span>, <span class="built_in">len</span>(numbers), <span class="built_in">cap</span>(numbers), numbers)</span><br><span class="line"></span><br><span class="line">	<span class="comment">//向一个容量cap已经满的slice 追加元素，</span></span><br><span class="line">	numbers = <span class="built_in">append</span>(numbers, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">	fmt.Printf(<span class="string">&quot;len = %d, cap = %d, slice = %v\n&quot;</span>, <span class="built_in">len</span>(numbers), <span class="built_in">cap</span>(numbers), numbers)</span><br><span class="line"></span><br><span class="line">	fmt.Println(<span class="string">&quot;---------&quot;</span>)</span><br><span class="line">	<span class="keyword">var</span> numbers2 = <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">3</span>)</span><br><span class="line">	fmt.Printf(<span class="string">&quot;len = %d, cap = %d, slice = %v\n&quot;</span>, <span class="built_in">len</span>(numbers2), <span class="built_in">cap</span>(numbers2), numbers2)</span><br><span class="line">	numbers2 = <span class="built_in">append</span>(numbers2, <span class="number">1</span>)</span><br><span class="line">	fmt.Printf(<span class="string">&quot;len = %d, cap = %d, slice = %v\n&quot;</span>, <span class="built_in">len</span>(numbers2), <span class="built_in">cap</span>(numbers2), numbers2)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行结果：<br><img src="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/image.30sptqezi280.webp" alt="image"></p>
+<p>运行结果：<br><img src="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/image.30sptqezi280.webp" width="60%"></p>
+<p><em><strong>注意事项：</strong></em></p>
+<ul>
+<li>切片为引用传递</li>
+<li>切片扩容会新建一个切片（容量为两倍），返回一个变量指向新的地址，原变量仍然指向旧的地址，因此可能出现扩容的地方都需要接收返回值。<blockquote>
+<p><em>Append returns the updated slice. It is therefore necessary to store the result of append, often in the variable holding the slice itself.</em></p>
+</blockquote>
+</li>
+</ul>
 <h2 id="切片截取与拷贝"><a href="#切片截取与拷贝" class="headerlink" title="切片截取与拷贝"></a>切片截取与拷贝</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	s := []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125; <span class="comment">//len = 3, cap = 3, [1,2,3]</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//[0, 2)</span></span><br><span class="line">	s1 := s[<span class="number">0</span>:<span class="number">2</span>] <span class="comment">// [1, 2]</span></span><br><span class="line">	fmt.Println(s1)</span><br><span class="line"></span><br><span class="line">	s1[<span class="number">0</span>] = <span class="number">100</span></span><br><span class="line"></span><br><span class="line">	fmt.Println(s)</span><br><span class="line">	fmt.Println(s1)</span><br><span class="line"></span><br><span class="line">	<span class="comment">//copy 可以将底层数组的slice一起进行拷贝</span></span><br><span class="line">	s2 := <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">3</span>) <span class="comment">//s2 = [0,0,0]</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//将s中的值 依次拷贝到s2中</span></span><br><span class="line">	<span class="built_in">copy</span>(s2, s)</span><br><span class="line">	fmt.Println(s2)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行结果：<br><img src="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/image.6q3upfbokho0.webp" alt="image"></p>
+<p>运行结果：<br><img src="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/image.6q3upfbokho0.webp" width="30%"></p>
 <h2 id="注意事项-1"><a href="#注意事项-1" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
 <li>每次扩容为之前容量的<strong>两倍</strong></li>
 <li>切片直接赋值 <code>ss := s</code> 与切片截取后，两个指针指向同一块区域，使用 <code>copy()</code> 进行深拷贝</li>
@@ -386,7 +388,35 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">goroutine</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Go并发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">chan</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">select</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">import包</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">reflect</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Tag</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">json</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -398,6 +428,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Go数组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Go切片</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Go map</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">struct</a>
               </li>
              
@@ -406,7 +448,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">List</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">TCP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -418,23 +472,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Go数组</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Go切片</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">this</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">static</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">初始化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">this</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -470,47 +516,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">reflect</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Tag</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">json</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Go map</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">goroutine</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Go并发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">chan</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">select</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">并发</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">操作系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
             
             <div class="clearfix"></div>
