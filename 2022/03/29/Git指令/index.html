@@ -6,20 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>github相关操作 | 愚者的小屋</title>
+  <title>Git指令 | 愚者的小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="github与本地仓库关联，pull, push 等">
+  <meta name="description" content="Git GitHub 简单操作">
 <meta property="og:type" content="article">
-<meta property="og:title" content="github相关操作">
-<meta property="og:url" content="http://example.com/2021/04/15/github%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:title" content="Git指令">
+<meta property="og:url" content="http://example.com/2022/03/29/Git%E6%8C%87%E4%BB%A4/index.html">
 <meta property="og:site_name" content="愚者的小屋">
-<meta property="og:description" content="github与本地仓库关联，pull, push 等">
+<meta property="og:description" content="Git GitHub 简单操作">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-04-15T07:10:45.000Z">
-<meta property="article:modified_time" content="2022-03-25T06:25:20.176Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/git1.40gal7vf0o80.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/git2.5r15f4tmedg0.jpg">
+<meta property="article:published_time" content="2022-03-29T12:50:22.000Z">
+<meta property="article:modified_time" content="2022-03-29T13:31:00.742Z">
 <meta property="article:author" content="FOOLISH">
-<meta property="article:tag" content="github">
+<meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/git1.40gal7vf0o80.jpg">
   
   
     <link rel="icon" href="/img/favicon.ico">
@@ -58,7 +61,7 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/categories">分类</a></li>
+				<li><a href="/categories">目录</a></li>
 	        
 			</ul>
 		</nav>
@@ -122,7 +125,7 @@
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/categories">分类</a></li>
+					<li style="width: 50%"><a href="/categories">目录</a></li>
 		        
 				</ul>
 			</nav>
@@ -137,36 +140,54 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-github相关操作" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Git指令" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      github相关操作
+      Git指令
     </h1>
   
 
         
-        <a href="/2021/04/15/github%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/" class="archive-article-date">
-  	<time datetime="2021-04-15T07:10:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-15</time>
+        <a href="/2022/03/29/Git%E6%8C%87%E4%BB%A4/" class="archive-article-date">
+  	<time datetime="2022-03-29T12:50:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>github与本地仓库关联，pull, push 等</p>
-<span id="more"></span>
-<ul>
-<li><code>git init</code></li>
-<li><code>git add -A</code></li>
-<li><code>git remote add origin &lt;URL&gt; </code> 把本地仓库与远端关联。如果出错，可以使用 <code>git remote rm origin</code> 移除连接</li>
-<li>如果远端和本地不一致，可先使用 <code>git pull</code></li>
-<li><code>git commit -m &#39;your-commit&#39;</code> 这一步很重要，否则可能会出现 up-to-date 但远端没有变化的情况</li>
-<li><code>git push</code> 也可以用 <code>git push -f</code> 强行 push</li>
+        <ul>
+<li>Git</li>
+<li><a href="">GitHub 简单操作</a><span id="more"></span></li>
 </ul>
+<hr>
+<h1 id="Git-与-SVN"><a href="#Git-与-SVN" class="headerlink" title="Git 与 SVN"></a>Git 与 SVN</h1><p>Git：分布式<br>SVN：集中式</p>
+<h1 id="工作流"><a href="#工作流" class="headerlink" title="工作流"></a>工作流</h1><img src="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/git1.40gal7vf0o80.jpg" width="80%">
+
+<ul>
+<li><code>git add files</code> 把文件的修改添加到暂存区</li>
+<li><code>git commit</code> 把暂存区的修改提交到当前分支，提交之后暂存区就被清空了</li>
+<li><code>git reset -- files</code> 使用当前分支上的修改覆盖暂存区，用来撤销最后一次 git add files</li>
+<li><code>git checkout -- files</code> 使用暂存区的修改覆盖工作目录，用来撤销本地修改</li>
+<li><code>git commit -a</code> 直接把所有文件的修改添加到暂存区然后执行提交</li>
+<li><code>git checkout HEAD -- files</code> 取出最后一次修改，可以用来进行回滚操作</li>
+</ul>
+<h1 id="Fast-forward"><a href="#Fast-forward" class="headerlink" title="Fast forward"></a>Fast forward</h1><p>“快进式合并”（fast-farward merge），会直接将 master 分支指向合并的分支，这种模式下进行分支合并会丢失分支信息，也就不能在分支历史上看出分支信息。</p>
+<p>可以在合并时加上 –no-ff 参数来禁用 Fast forward 模式，并且加上 -m 参数让合并时产生一个新的 commit：    <code>git merge --no-ff -m &quot;merge with no-ff&quot; dev</code></p>
+<h1 id="储藏（Stashing）"><a href="#储藏（Stashing）" class="headerlink" title="储藏（Stashing）"></a>储藏（Stashing）</h1><p>使用 <code>git stash</code> 储藏当前分支的修改，使工作区干净，这样就可以安全地切换到其他分支上了</p>
+<h1 id="Git指令"><a href="#Git指令" class="headerlink" title="Git指令"></a>Git指令</h1><p><a target="_blank" rel="noopener" href="http://www.cheat-sheets.org/saved-copy/git-cheat-sheet.pdf">详细操作</a><br><img src="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/git2.5r15f4tmedg0.jpg" alt="git2"></p>
+<blockquote>
+<p>参考资料</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/CyC2018/CS-Notes/blob/master/notes/Git.md">CyC2018/CS-Notes/Git - GitHub</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/git/git-tutorial.html">Git教程 - 菜鸟教程</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.cheat-sheets.org/saved-copy/git-cheat-sheet.pdf">git-cheat-sheet</a></li>
+</ul>
+</blockquote>
 
       
 
@@ -180,7 +201,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
         		</li>
       		
 		</ul>
@@ -210,18 +231,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2022/03/10/List/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          List
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/04/10/Markdown%E8%AF%AD%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Markdown语法</div>
+    <a href="/2022/03/28/Go%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Go常用函数</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -248,7 +260,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git-%E4%B8%8E-SVN"><span class="toc-number">1.</span> <span class="toc-text">Git 与 SVN</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="toc-number">2.</span> <span class="toc-text">工作流</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Fast-forward"><span class="toc-number">3.</span> <span class="toc-text">Fast forward</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%82%A8%E8%97%8F%EF%BC%88Stashing%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">储藏（Stashing）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git%E6%8C%87%E4%BB%A4"><span class="toc-number">5.</span> <span class="toc-text">Git指令</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -416,19 +428,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">List</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">TCP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -485,6 +489,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">操作系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
             
             <div class="clearfix"></div>
