@@ -16,8 +16,9 @@
 <meta property="og:description" content="Go 常用函数">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-28T01:46:19.000Z">
-<meta property="article:modified_time" content="2022-03-29T01:24:09.246Z">
+<meta property="article:modified_time" content="2022-03-30T06:55:33.992Z">
 <meta property="article:author" content="FOOLISH">
+<meta property="article:tag" content="Go函数">
 <meta name="twitter:card" content="summary">
   
   
@@ -162,6 +163,12 @@
 <h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><ul>
 <li>arr = append(arr, []int{1,2,3})</li>
 </ul>
+<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><h2 id="strconv"><a href="#strconv" class="headerlink" title="strconv"></a>strconv</h2><ul>
+<li>string 转 int <code>int, err := strconv.Atoi(string)</code></li>
+<li>string 转 int64 <code>int64, err := strconv.ParseInt(string, 10, 64)</code></li>
+<li>int 转 string <code>string := strconv.Itoa(int)</code></li>
+<li>int64 转 string <code>string := strconv.FormatInt(int64,10)</code><h2 id="字符串转数组"><a href="#字符串转数组" class="headerlink" title="字符串转数组"></a>字符串转数组</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[]<span class="keyword">byte</span>(<span class="string">&quot;hello world&quot;</span>)</span><br></pre></td></tr></table></figure></li>
+</ul>
 <h1 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h1><h2 id="list（双向）"><a href="#list（双向）" class="headerlink" title="list（双向）"></a>list（双向）</h2><h2 id="heap"><a href="#heap" class="headerlink" title="heap"></a>heap</h2><h2 id="ring"><a href="#ring" class="headerlink" title="ring"></a>ring</h2>
       
 
@@ -170,6 +177,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Go函数</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
@@ -236,7 +254,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-number">1.</span> <span class="toc-text">排序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">2.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">容器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#list%EF%BC%88%E5%8F%8C%E5%90%91%EF%BC%89"><span class="toc-number">3.1.</span> <span class="toc-text">list（双向）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#heap"><span class="toc-number">3.2.</span> <span class="toc-text">heap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ring"><span class="toc-number">3.3.</span> <span class="toc-text">ring</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-number">1.</span> <span class="toc-text">排序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">2.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">3.</span> <span class="toc-text">字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#strconv"><span class="toc-number">3.1.</span> <span class="toc-text">strconv</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%95%B0%E7%BB%84"><span class="toc-number">3.2.</span> <span class="toc-text">字符串转数组</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text">容器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#list%EF%BC%88%E5%8F%8C%E5%90%91%EF%BC%89"><span class="toc-number">4.1.</span> <span class="toc-text">list（双向）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#heap"><span class="toc-number">4.2.</span> <span class="toc-text">heap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ring"><span class="toc-number">4.3.</span> <span class="toc-text">ring</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -473,6 +491,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
             
             <div class="clearfix"></div>
