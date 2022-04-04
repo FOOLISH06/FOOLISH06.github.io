@@ -6,15 +6,31 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>愚者的小屋</title>
+  <title>Go http | 愚者的小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="愚者的小屋">
-<meta property="og:url" content="http://example.com/page/2/index.html">
+  <meta name="description" content="Go http 编程  http.Server Handler 与 DefaultServeMux http.Handle() http.HandleFunc()">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go http">
+<meta property="og:url" content="http://example.com/2022/03/30/Go-http/index.html">
 <meta property="og:site_name" content="愚者的小屋">
+<meta property="og:description" content="Go http 编程  http.Server Handler 与 DefaultServeMux http.Handle() http.HandleFunc()">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/web1.6rhh8jlai880.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/web4.51twil7gb6g0.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/web2.17ffeadwvhy8.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/web3.4eps7z63f4o0.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/web5.6fjafavb6540.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/web6.3xhurinnd600.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/image.6ow8ehuh3fc0.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/web7.1vf1zwbpd9i8.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/web4.51twil7gb6g0.jpg">
+<meta property="article:published_time" content="2022-03-30T07:42:20.000Z">
+<meta property="article:modified_time" content="2022-04-04T07:03:34.479Z">
 <meta property="article:author" content="FOOLISH">
+<meta property="article:tag" content="web">
+<meta property="article:tag" content="http">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/web1.6rhh8jlai880.jpg">
   
   
   <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
@@ -130,683 +146,62 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Go反射" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Go-http" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/21/Go%E5%8F%8D%E5%B0%84/">Go反射</a>
+    <h1 class="article-title" itemprop="name">
+      Go http
     </h1>
   
 
         
-        <a href="/2022/03/21/Go%E5%8F%8D%E5%B0%84/" class="archive-article-date">
-  	<time datetime="2022-03-21T07:43:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-21</time>
+        <a href="/2022/03/30/Go-http/" class="archive-article-date">
+  	<time datetime="2022-03-30T07:42:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li>反射</li>
-<li>反射解析结构体标签</li>
-<li>结构体标签与 json
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">reflect</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Tag</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">json</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Go/Go基础//" class="article-tag-list-link color5">Go基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/21/Go%E5%8F%8D%E5%B0%84/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Go结构体" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/21/Go%E7%BB%93%E6%9E%84%E4%BD%93/">Go结构体</a>
-    </h1>
-  
-
-        
-        <a href="/2022/03/21/Go%E7%BB%93%E6%9E%84%E4%BD%93/" class="archive-article-date">
-  	<time datetime="2022-03-21T04:40:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Go 面向对象：</p>
+        <p>Go http 编程</p>
 <ul>
-<li>结构体</li>
-<li>继承</li>
-<li>接口
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">struct</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">interface</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Go/Go基础//" class="article-tag-list-link color5">Go基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/21/Go%E7%BB%93%E6%9E%84%E4%BD%93/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-go函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/20/go%E5%87%BD%E6%95%B0/">go函数</a>
-    </h1>
-  
-
-        
-        <a href="/2022/03/20/go%E5%87%BD%E6%95%B0/" class="archive-article-date">
-  	<time datetime="2022-03-20T04:40:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Go函数</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Go函数</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Go/Go基础//" class="article-tag-list-link color5">Go基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/20/go%E5%87%BD%E6%95%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Go数组、切片与map" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/20/Go%E6%95%B0%E7%BB%84%E3%80%81%E5%88%87%E7%89%87%E4%B8%8Emap/">Go数组、切片与map</a>
-    </h1>
-  
-
-        
-        <a href="/2022/03/20/Go%E6%95%B0%E7%BB%84%E3%80%81%E5%88%87%E7%89%87%E4%B8%8Emap/" class="archive-article-date">
-  	<time datetime="2022-03-20T01:44:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>数组</li>
-<li>切片</li>
-<li>map
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Go数组</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Go切片</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Go map</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Go/Go基础//" class="article-tag-list-link color5">Go基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/20/Go%E6%95%B0%E7%BB%84%E3%80%81%E5%88%87%E7%89%87%E4%B8%8Emap/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Go import与init" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/19/Go%20import%E4%B8%8Einit/">Go import与init</a>
-    </h1>
-  
-
-        
-        <a href="/2022/03/19/Go%20import%E4%B8%8Einit/" class="archive-article-date">
-  	<time datetime="2022-03-19T05:10:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">import包</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Go/Go基础//" class="article-tag-list-link color5">Go基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/19/Go%20import%E4%B8%8Einit/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Go变量与常量" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/19/Go%E5%8F%98%E9%87%8F%E4%B8%8E%E5%B8%B8%E9%87%8F/">Go变量与常量</a>
-    </h1>
-  
-
-        
-        <a href="/2022/03/19/Go%E5%8F%98%E9%87%8F%E4%B8%8E%E5%B8%B8%E9%87%8F/" class="archive-article-date">
-  	<time datetime="2022-03-19T04:55:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Go变量类型与 const, iota</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">const</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">iota</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Go/Go基础//" class="article-tag-list-link color5">Go基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/19/Go%E5%8F%98%E9%87%8F%E4%B8%8E%E5%B8%B8%E9%87%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-GitHub简单操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/15/GitHub%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/">GitHub简单操作</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/15/GitHub%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/" class="archive-article-date">
-  	<time datetime="2021-04-15T07:10:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>github与本地仓库关联，pull, push 等</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工具//" class="article-tag-list-link color3">工具</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/15/GitHub%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Markdown语法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/10/Markdown%E8%AF%AD%E6%B3%95/">Markdown语法</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/10/Markdown%E8%AF%AD%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2021-04-10T06:23:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p><a target="_blank" rel="noopener" href="https://xianbai.me/learn-md/index.html">Markdown教程</a></p>
+<li>http.Server</li>
+<li>Handler 与 DefaultServeMux</li>
+<li>http.Handle()</li>
+<li>http.HandleFunc()<span id="more"></span></li>
+</ul>
+<h1 id="http-编程"><a href="#http-编程" class="headerlink" title="http 编程"></a>http 编程</h1><h2 id="简单demo："><a href="#简单demo：" class="headerlink" title="简单demo："></a>简单demo：</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;net/http&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span> &#123;</span><br><span class="line">	http.HandleFunc(<span class="string">&quot;/&quot;</span>, <span class="function"><span class="keyword">func</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span><br><span class="line">		w.Write([]<span class="keyword">byte</span>(<span class="string">&quot;hello world&quot;</span>))</span><br><span class="line">	&#125;)</span><br><span class="line">	http.ListenAndServe(<span class="string">&quot;localhost:8080&quot;</span>, <span class="literal">nil</span>) <span class="comment">// DefaultServeMux</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="http-Server"><a href="#http-Server" class="headerlink" title="http.Server"></a>http.Server</h2><p><code>http.ListenAndServe()</code>源码：<br><img src="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/web1.6rhh8jlai880.jpg" width="70%"><br>实际上，就是创建了一个结构体 <em><strong>http.Server</strong></em> ，然后调用 server 的ListenAndServe() 方法</p>
+<p>因此，可以直接创建一个 <em><strong>http.Server</strong></em> 变量，然后调用该方法：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	server := http.Server &#123;</span><br><span class="line">		Addr: <span class="string">&quot;localhost:8080&quot;</span>,</span><br><span class="line">		Handler: <span class="literal">nil</span>,</span><br><span class="line">	&#125;</span><br><span class="line">	server.ListenAndServe()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不过，这样无法访问，因为没有配置路由</p>
+<h2 id="Handler-与-DefaultServeMux"><a href="#Handler-与-DefaultServeMux" class="headerlink" title="Handler 与 DefaultServeMux"></a>Handler 与 DefaultServeMux</h2><p>如果 http.Server 中的 <code>Handler: nil</code> ，默认为 <code>DefaultServeMux</code><br><code>http.Handler</code> 是一个接口，匹配所有实现了 <strong>ServeHTTP()</strong> 方法的结构体<br><img src="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/web4.51twil7gb6g0.jpg" width="50%"></p>
+<p>代码示例：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;net/http&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> myHandler <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(handler myHandler)</span> <span class="title">ServeHTTP</span> <span class="params">(write http.ResponseWriter, read *http.Request)</span></span> &#123;</span><br><span class="line">	write.Write([]<span class="keyword">byte</span>(<span class="string">&quot;hello world&quot;</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	handler := myHandler&#123;&#125;</span><br><span class="line"></span><br><span class="line">	server := http.Server &#123;</span><br><span class="line">		Addr: <span class="string">&quot;localhost:8080&quot;</span>,</span><br><span class="line">		Handler: &amp;handler,</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	server.ListenAndServe()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不过，直接指定 Handler 会导致所有请求都交给该 Handler ，下面有两种解决方法</p>
+<h3 id="方法一：http-Handle"><a href="#方法一：http-Handle" class="headerlink" title="方法一：http.Handle()"></a>方法一：http.Handle()</h3><p>不指定 Handler，使用 <code>http.Handle()</code> 方法将某个 Handler 附加到 DefaultServeMux 中</p>
+<p><strong>DefaultServeMux</strong> 是一个 <strong>ServeMux</strong> 类型的指针，ServeMux 中有 <code>Handle()</code> 方法<br><img src="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/web2.17ffeadwvhy8.jpg" width="70%"></p>
+<p>使用 <code>http.Handle()</code> 方法将某个 Handler 附加到 DefaultServeMux 中，实际上就是在调用 DefaultServeMux 的 Handle() 方法<br><img src="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/web3.4eps7z63f4o0.jpg" width="90%"></p>
+<p>代码示例：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;net/http&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> helloHandler <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(handler helloHandler)</span> <span class="title">ServeHTTP</span> <span class="params">(write http.ResponseWriter, read *http.Request)</span></span> &#123;</span><br><span class="line">	write.Write([]<span class="keyword">byte</span>(<span class="string">&quot;hello&quot;</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> homeHandler <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(handler homeHandler)</span> <span class="title">ServeHTTP</span> <span class="params">(write http.ResponseWriter, read *http.Request)</span></span> &#123;</span><br><span class="line">	write.Write([]<span class="keyword">byte</span>(<span class="string">&quot;home&quot;</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	hello := helloHandler&#123;&#125;</span><br><span class="line">	home := homeHandler&#123;&#125;</span><br><span class="line"></span><br><span class="line">	server := http.Server &#123;</span><br><span class="line">		Addr: <span class="string">&quot;localhost:8080&quot;</span>,</span><br><span class="line">		Handler: <span class="literal">nil</span>,</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	http.Handle(<span class="string">&quot;/hello&quot;</span>, hello)</span><br><span class="line">	http.Handle(<span class="string">&quot;/home&quot;</span>, home)</span><br><span class="line">	server.ListenAndServe()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法二：http-HandleFunc"><a href="#方法二：http-HandleFunc" class="headerlink" title="方法二：http.HandleFunc()"></a>方法二：http.HandleFunc()</h3><img src="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/web5.6fjafavb6540.jpg" width="80%">
+
+<p>使用 <code>http.HandleFunc()</code> 将具有适当签名的 <strong>Handler</strong> 方法注册到 DefaultServeMux 中（使用 <strong>DefaultServeMux.HandleFunc()</strong> ）<br><img src="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/web6.3xhurinnd600.jpg" width="90%"></p>
+<img src="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/image.6ow8ehuh3fc0.jpg" width="90%">
+
+<p>其中， <code>HandlerFunc(handler)</code> 是将通过参数传递的 <em><strong>handler 方法</strong></em> 适配（转型）成 <em><strong>HandlerFunc</strong></em> ，而 HandlerFunc 是一个<strong>函数类型</strong>，只要参数和返回值相同，就可以转型成 HandlerFunc。而 HandlerFunc 实现了 <em><strong>Handler 接口</strong></em> 的 <code>ServeHTTP()</code> 方法。<br><img src="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/web7.1vf1zwbpd9i8.jpg" width="90%"></p>
+<img src="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/web4.51twil7gb6g0.jpg" width="50%">
+
+<blockquote>
+<p><em><strong>也就是说，自定义的方法（与 HandlerFunc 有相同的参数）被转型成了 HandleFunc ，然后作为 Handler 被添加到了 DefaultServeMux 中（后续过程与方法一类似）</strong></em></p>
 </blockquote>
+<p>代码示例：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;log&quot;</span></span><br><span class="line">	<span class="string">&quot;net/http&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">hello</span><span class="params">(w http.ResponseWriter, read *http.Request)</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> _, err := w.Write([]<span class="keyword">byte</span>(<span class="string">&quot;hello&quot;</span>)); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Println(err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	server := http.Server &#123;</span><br><span class="line">		Addr: <span class="string">&quot;localhost:8080&quot;</span>,</span><br><span class="line">		Handler: <span class="literal">nil</span>,</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	http.HandleFunc(<span class="string">&quot;/hello&quot;</span>, hello)</span><br><span class="line">	http.HandleFunc(<span class="string">&quot;/about&quot;</span>, <span class="function"><span class="keyword">func</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span>&#123;</span><br><span class="line">		_, _ = w.Write([]<span class="keyword">byte</span>(<span class="string">&quot;about&quot;</span>))</span><br><span class="line">	&#125;)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> err := server.ListenAndServe(); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Println(err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -820,7 +215,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Markdown</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
         		</li>
       		
 		</ul>
@@ -832,7 +231,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/工具//" class="article-tag-list-link color3">工具</a>
+        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Go/Go-Web//" class="article-tag-list-link color2">Go Web</a>
         		</li>
       		
 		</ul>
@@ -840,16 +243,24 @@
 
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/10/Markdown%E8%AF%AD%E6%B3%95/">展开全文 >></a>
-        </p>
-      
 
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2022/03/30/Go%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E4%B8%8E%E9%97%AD%E5%8C%85/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Go回调函数与闭包</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -864,211 +275,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-第七章-多形性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/09/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E5%A4%9A%E5%BD%A2%E6%80%A7/">第七章 多形性</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/09/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E5%A4%9A%E5%BD%A2%E6%80%A7/" class="archive-article-date">
-  	<time datetime="2020-06-09T02:50:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>摘要：</p>
-<ul>
-<li>上溯造型中方法的绑定</li>
-<li>抽象类和方法</li>
-<li>接口<br>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">上溯造型</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">抽象类</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">接口</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java/java编程思想//" class="article-tag-list-link color4">java编程思想</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/09/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E5%A4%9A%E5%BD%A2%E6%80%A7/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#http-%E7%BC%96%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">http 编程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95demo%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">简单demo：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http-Server"><span class="toc-number">1.2.</span> <span class="toc-text">http.Server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Handler-%E4%B8%8E-DefaultServeMux"><span class="toc-number">1.3.</span> <span class="toc-text">Handler 与 DefaultServeMux</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9Ahttp-Handle"><span class="toc-number">1.3.1.</span> <span class="toc-text">方法一：http.Handle()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9Ahttp-HandleFunc"><span class="toc-number">1.3.2.</span> <span class="toc-text">方法二：http.HandleFunc()</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
-  
-    <article id="post-第六章-类再生" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/03/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E7%B1%BB%E5%86%8D%E7%94%9F/">第六章 类再生</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/03/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E7%B1%BB%E5%86%8D%E7%94%9F/" class="archive-article-date">
-  	<time datetime="2020-06-03T02:16:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>摘要：<br>1.合成与继承<br>2.final</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">继承</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">final</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java/java编程思想//" class="article-tag-list-link color4">java编程思想</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/03/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E7%B1%BB%E5%86%8D%E7%94%9F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -1091,8 +323,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
