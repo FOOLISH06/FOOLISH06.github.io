@@ -16,7 +16,7 @@
 <meta property="og:description" content="Go 常用函数">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-28T01:46:19.000Z">
-<meta property="article:modified_time" content="2022-03-30T06:55:33.992Z">
+<meta property="article:modified_time" content="2022-04-11T03:41:48.442Z">
 <meta property="article:author" content="FOOLISH">
 <meta property="article:tag" content="Go函数">
 <meta name="twitter:card" content="summary">
@@ -163,13 +163,36 @@
 <h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><ul>
 <li>arr = append(arr, []int{1,2,3})</li>
 </ul>
-<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><h2 id="strconv"><a href="#strconv" class="headerlink" title="strconv"></a>strconv</h2><ul>
+<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><h2 id="strconv-包"><a href="#strconv-包" class="headerlink" title="strconv 包"></a>strconv 包</h2><ul>
 <li>string 转 int <code>int, err := strconv.Atoi(string)</code></li>
 <li>string 转 int64 <code>int64, err := strconv.ParseInt(string, 10, 64)</code></li>
 <li>int 转 string <code>string := strconv.Itoa(int)</code></li>
-<li>int64 转 string <code>string := strconv.FormatInt(int64,10)</code><h2 id="字符串转数组"><a href="#字符串转数组" class="headerlink" title="字符串转数组"></a>字符串转数组</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[]<span class="keyword">byte</span>(<span class="string">&quot;hello world&quot;</span>)</span><br></pre></td></tr></table></figure></li>
+<li>int64 转 string <code>string := strconv.FormatInt(int64,10)</code></li>
 </ul>
-<h1 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h1><h2 id="list（双向）"><a href="#list（双向）" class="headerlink" title="list（双向）"></a>list（双向）</h2><h2 id="heap"><a href="#heap" class="headerlink" title="heap"></a>heap</h2><h2 id="ring"><a href="#ring" class="headerlink" title="ring"></a>ring</h2>
+<h2 id="strings-包"><a href="#strings-包" class="headerlink" title="strings 包"></a>strings 包</h2><ul>
+<li><code>func Contains(s, substr string) bool</code></li>
+<li><code>func Count(s, sep string) int</code></li>
+<li><code>func Fields(s string) []string</code></li>
+<li><code>func HasPrefix(s, prefix string) bool</code></li>
+<li><code>func Index(s, sep string) int</code></li>
+<li><code>func Join(a []string, sep string) string</code></li>
+</ul>
+<p>bytes 包同理，区别在于参数换成了 []byte</p>
+<h2 id="bytes-Buffer"><a href="#bytes-Buffer" class="headerlink" title="bytes.Buffer"></a>bytes.Buffer</h2><ul>
+<li><code>buf.Write()</code></li>
+<li><code>buf.WriteRune</code></li>
+<li><code>buf.String()</code></li>
+</ul>
+<p>代码示例：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> buf bytes.Buffer</span><br><span class="line">	s := <span class="keyword">string</span>(<span class="string">&quot;吴兴宇&quot;</span>)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> _, val := <span class="keyword">range</span> s &#123;</span><br><span class="line">		buf.WriteRune(val)</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(buf.String())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>bytes.Buffer类型用于字节slice的缓存。一个Buffer开始是空的，但是随着string、byte或[]byte等类型数据的写入可以动态增长，一个bytes.Buffer变量并不需要初始化，因为零值也是有效的。</li>
+<li>当向bytes.Buffer添加任意字符的UTF8编码时，最好使用bytes.Buffer的WriteRune方法，但是WriteByte方法对于写入类似’[‘和’]’等ASCII字符则会更加有效。</li>
+</ul>
+<h1 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h1><h2 id="list（双向）"><a href="#list（双向）" class="headerlink" title="list（双向）"></a>list（双向）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">type Element</span><br><span class="line">    func (e *Element) Next() *Element</span><br><span class="line">    func (e *Element) Prev() *Element</span><br><span class="line">type List</span><br><span class="line">    func New() *List</span><br><span class="line">    func (l *List) Back() *Element   &#x2F;&#x2F; 返回最后一个元素</span><br><span class="line">    func (l *List) Front() *Element  &#x2F;&#x2F; 返回第一个元素</span><br><span class="line">    func (l *List) Init() *List  &#x2F;&#x2F; 链表初始化</span><br><span class="line">    func (l *List) InsertAfter(v interface&#123;&#125;, mark *Element) *Element &#x2F;&#x2F; 在某个元素前插入</span><br><span class="line">    func (l *List) InsertBefore(v interface&#123;&#125;, mark *Element) *Element  &#x2F;&#x2F; 在某个元素后插入</span><br><span class="line">    func (l *List) Len() int &#x2F;&#x2F; 返回链表长度</span><br><span class="line">    func (l *List) MoveAfter(e, mark *Element)  &#x2F;&#x2F; 把e元素移动到mark之后</span><br><span class="line">    func (l *List) MoveBefore(e, mark *Element)  &#x2F;&#x2F; 把e元素移动到mark之前</span><br><span class="line">    func (l *List) MoveToBack(e *Element) &#x2F;&#x2F; 把e元素移动到队列最后</span><br><span class="line">    func (l *List) MoveToFront(e *Element) &#x2F;&#x2F; 把e元素移动到队列最头部</span><br><span class="line">    func (l *List) PushBack(v interface&#123;&#125;) *Element  &#x2F;&#x2F; 在队列最后插入元素</span><br><span class="line">    func (l *List) PushBackList(other *List)  &#x2F;&#x2F; 在队列最后插入接上新队列</span><br><span class="line">    func (l *List) PushFront(v interface&#123;&#125;) *Element  &#x2F;&#x2F; 在队列头部插入元素</span><br><span class="line">    func (l *List) PushFrontList(other *List) &#x2F;&#x2F; 在队列头部插入接上新队列</span><br><span class="line">    func (l *List) Remove(e *Element) interface&#123;&#125; &#x2F;&#x2F; 删除某个元素</span><br></pre></td></tr></table></figure>
+<p>使用示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">queue :&#x3D; list.New()	&#x2F;&#x2F; 创建一个 list</span><br><span class="line">queue.PushBack(&amp;postion&#123;x, y&#125;) &#x2F;&#x2F; 在链表尾部插入一个结构体指针</span><br><span class="line">for queue.Len() !&#x3D; 0 &#123;</span><br><span class="line">	element :&#x3D; queue.Front() &#x2F;&#x2F; 取出链表头部的元素，是 Element 类型</span><br><span class="line">	pos :&#x3D; element.Value.(*postion) &#x2F;&#x2F; Element.Value 取出值，是 interface&#123;&#125; 类型，通过断言转型成 *position</span><br><span class="line">	queue.Remove(element) &#x2F;&#x2F; 删除指定元素， Element 类型</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="heap"><a href="#heap" class="headerlink" title="heap"></a>heap</h2><h2 id="ring"><a href="#ring" class="headerlink" title="ring"></a>ring</h2>
       
 
       
@@ -254,7 +277,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-number">1.</span> <span class="toc-text">排序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">2.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">3.</span> <span class="toc-text">字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#strconv"><span class="toc-number">3.1.</span> <span class="toc-text">strconv</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%95%B0%E7%BB%84"><span class="toc-number">3.2.</span> <span class="toc-text">字符串转数组</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text">容器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#list%EF%BC%88%E5%8F%8C%E5%90%91%EF%BC%89"><span class="toc-number">4.1.</span> <span class="toc-text">list（双向）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#heap"><span class="toc-number">4.2.</span> <span class="toc-text">heap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ring"><span class="toc-number">4.3.</span> <span class="toc-text">ring</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-number">1.</span> <span class="toc-text">排序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">2.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">3.</span> <span class="toc-text">字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#strconv-%E5%8C%85"><span class="toc-number">3.1.</span> <span class="toc-text">strconv 包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#strings-%E5%8C%85"><span class="toc-number">3.2.</span> <span class="toc-text">strings 包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bytes-Buffer"><span class="toc-number">3.3.</span> <span class="toc-text">bytes.Buffer</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text">容器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#list%EF%BC%88%E5%8F%8C%E5%90%91%EF%BC%89"><span class="toc-number">4.1.</span> <span class="toc-text">list（双向）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#heap"><span class="toc-number">4.2.</span> <span class="toc-text">heap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ring"><span class="toc-number">4.3.</span> <span class="toc-text">ring</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>

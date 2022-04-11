@@ -16,12 +16,13 @@
 <meta property="og:description" content="URL Header Body">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/http1.7hwu632imo00.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/http7.5zsfka0ywtk0.jpg">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/http2.628czfe3rpk0.jpg">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/http3.6nhpywfeuw00.jpg">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/http4.1fawlm1jkycg.jpg">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/http6.6argwzl2o1k0.jpg">
 <meta property="article:published_time" content="2022-04-05T10:36:21.000Z">
-<meta property="article:modified_time" content="2022-04-05T11:25:00.758Z">
+<meta property="article:modified_time" content="2022-04-05T11:37:59.088Z">
 <meta property="article:author" content="FOOLISH">
 <meta property="article:tag" content="web">
 <meta property="article:tag" content="http">
@@ -176,7 +177,11 @@
 <li>Form、PostForm、MultipartForm</li>
 </ul>
 <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p>URL 的一般形式：<br><code>[scheme:][//[userinfo@]host][/]path[?query][#fragment]</code><br>不以斜杠开头的 URL 为不透明 URL：<br><code>scheme:opaque[?query][#fragment]</code></p>
-<p><strong>URL Query</strong><br>RawQuery 会提供实际查询的字符串。<br>例如： <code>http://www.example.com/post?id=123&amp;thread_id=456</code><br>它的 RawQuery 的值就是 id=123&amp;thread_id=456 </p>
+<p><strong>URL Query</strong></p>
+<ul>
+<li><code>r.URL.RawQuery</code> 会提供实际查询的字符串。<br>例如： <code>http://www.example.com/post?id=123&amp;thread_id=456</code><br>它的 RawQuery 的值就是 id=123&amp;thread_id=456 </li>
+<li><code>r.URL.Query()</code>，会提供查询字符串对应的 map[string][]string<img src="https://cdn.jsdelivr.net/gh/FOOLISH06/image-folder@master/blog-image/http7.5zsfka0ywtk0.jpg" width=60%></li>
+</ul>
 <p><strong>URL Fragment</strong><br>浏览器在发送请求时会把 fragment 字段去掉，交给 JavaScript 解析，一般用来在页面内定位（通过 html 标签的 id 定位）</p>
 <h2 id="Header"><a href="#Header" class="headerlink" title="Header"></a>Header</h2><ul>
 <li>请求和响应（Request、Response）的 headers 是通过 Header 类型来描述的，它是一个 map，用来表述 HTTP Header 里的 Key-Value 对。</li>
@@ -266,6 +271,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2022/04/05/Go-http%E5%93%8D%E5%BA%94/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Go http响应
+        
+      </div>
+    </a>
   
   
     <a href="/2022/03/30/Go-http/" id="article-nav-older" class="article-nav-link-wrap">
