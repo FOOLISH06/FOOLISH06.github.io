@@ -122,7 +122,7 @@
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>目录</a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -232,8 +232,8 @@
 <h1 id="初始化顺序"><a href="#初始化顺序" class="headerlink" title="初始化顺序"></a>初始化顺序</h1><p><del>P114</del><br>以一个名为Dog的类为例：<br>（1）类型为Dog的一个对象首次创建是，或者Dog类的static方法或字段首次访问时，java解释器必须找到Dog.class(在事先设好的类路径里搜索)<br>（2）找到Dog.class后（会创建一个class对象），它的所有static初始化模块都会运行。因此，<strong>static初始化仅发生一次——在class对象首次载入的时候</strong>。<br>（3）创建一个new Dog() 时，Dog对象的构建过程首先会在内存堆（heap）里为一个Dog对象分配足够多的存储空间。<br>（4）这些存储空间会清零，将Dog中所有的基础类型设为默认值（<em>数字为0，Boolean为false，char为空（null）</em>）。<br>（5）进行字段定义是发生的所有初始话都会执行。<br>（6）执行构造器。（实际可能要求进行相当多的操作，特别是在设计继承的时候）。</p>
 <hr>
 <h1 id="静态初始化从句-静态块"><a href="#静态初始化从句-静态块" class="headerlink" title="静态初始化从句(静态块)"></a>静态初始化从句(静态块)</h1><p><del>P114</del></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Test&#123;</span><br><span class="line">	static int i;</span><br><span class="line">	static&#123;</span><br><span class="line">		i &#x3D; 47;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="非静态实例的初始化"><a href="#非静态实例的初始化" class="headerlink" title="非静态实例的初始化"></a>非静态实例的初始化</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	a &#x3D; new Test();</span><br><span class="line">	b &#x3D; new Test();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Test&#123;</span><br><span class="line">    static int i;</span><br><span class="line">    static&#123;</span><br><span class="line">        i &#x3D; 47;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="非静态实例的初始化"><a href="#非静态实例的初始化" class="headerlink" title="非静态实例的初始化"></a>非静态实例的初始化</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    a &#x3D; new Test();</span><br><span class="line">    b &#x3D; new Test();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><em><strong>为支持“匿名内部类”的初始化（第七章），必须采用这一语法格式。</strong></em></p>
 
     </div>
